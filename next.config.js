@@ -1,15 +1,18 @@
-const withPlugins = require("next-compose-plugins");
-const withCss = require("@zeit/next-css");
-const withReactSvg = require("next-react-svg");
-const withImages = require("next-images");
+const withPlugins = require('next-compose-plugins');
+const withCss = require('@zeit/next-css');
+const withImages = require('next-images');
 
-const path = require("path");
+const path = require('path');
+
+const nextReactSvgConfig = {
+  include: path.resolve(__dirname, './public/images'),
+};
+const withReactSvg = require('next-react-svg')(nextReactSvgConfig);
 
 module.exports = withPlugins([
   withCss({}),
   withImages({}),
   withReactSvg({
-    include: path.resolve(__dirname, "./public/images"),
     webpack(config, options) {
       return config;
     },
